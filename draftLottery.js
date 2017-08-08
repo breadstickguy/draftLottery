@@ -33,7 +33,7 @@ const shuffle = array => {
 const lotterySelector = array => {
 	//Selects the first value in the shuffled array
 	// console.log('draftOrder', draftOrder);
-	var choice = array[0];
+	let choice = array[0];
 	// console.log('the choice',choice);
 	//If the person hasn't been chosen yet, move them over
 	if (!draftOrder.includes(choice)) {

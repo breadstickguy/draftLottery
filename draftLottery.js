@@ -32,13 +32,17 @@ const shuffle = array => {
 //The selector for the lottery
 const lotterySelector = array => {
 	//Selects the first value in the shuffled array
+	console.log('draftOrder', draftOrder);
 	var choice = array[0];
+	console.log('the choice',choice);
 	//If the person hasn't been chosen yet, move them over
-	if (draftOrder.includes(choice)) {
+	if (!draftOrder.includes(choice)) {
 		draftOrder.push(choice);
+		console.log('draftOrder', draftOrder);
 	}
 	//Remove the value
-	draftChances.pop(choice);
+	draftChances.splice(0,1);
+	console.log('draftChances',draftChances);
 }
 
 
@@ -52,5 +56,5 @@ const recursiveLotteryRunner = (draftChances) => {
  	recursiveLotteryRunner(draftChances);
 }
 
-console.log(shuffle(draftChances));
+console.log(lotterySelector(draftChances));
 // recursiveLotteryRunner(draftChances);

@@ -47,8 +47,8 @@ const lotterySelector = array => {
 
 
 const recursiveLotteryRunner = (draftChances) => {
-	// console.log('first =>', classList);
-	if(draftOrder.length <= 12) {
+	console.log('first =>', draftChances);
+	if(draftOrder.length == 12) {
 		return;
  	}		
 	
@@ -56,5 +56,5 @@ const recursiveLotteryRunner = (draftChances) => {
  	recursiveLotteryRunner(draftChances);
 }
 
-console.log(lotterySelector(draftChances));
-// recursiveLotteryRunner(draftChances);
+
+recursiveLotteryRunner(draftChances);

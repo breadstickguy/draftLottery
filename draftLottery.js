@@ -1,19 +1,19 @@
 const draftChances = [
-	"JJ",
-	"Josh",
-	"Brian W",
-	"Seth",
-	"Manny",
-	"Jerry",
-	"Juan",
-	"Taylor",
-	"Nate",
-	"Adam",
-	"Tom",
-	"Brian J"
-
+	"Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry", //12
+	"Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor", //11
+	"Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom", //10
+	"JJ","JJ","JJ","JJ","JJ","JJ","JJ","JJ","JJ", //9
+	"Adam","Adam","Adam","Adam","Adam","Adam","Adam","Adam", //8
+	"Josh","Josh","Josh","Josh","Josh","Josh","Josh", //7
+	"Juan","Juan","Juan","Juan","Juan","Juan", //6
+	"Brian J","Brian J","Brian J","Brian J","Brian J", //5
+	"Brian W","Brian W","Brian W","Brian W",//4
+	"Manny","Manny","Manny",//3
+	"Seth","Seth",//2
+	"Nate"//1
 ];
 const draftOrder = [];
+let count = 0;
 
 
 
@@ -32,26 +32,23 @@ const shuffle = array => {
 //The selector for the lottery
 const lotterySelector = array => {
 	//Selects the first value in the shuffled array
-	// console.log('draftOrder', draftOrder);
 	let choice = array[0];
-	// console.log('the choice',choice);
 	//If the person hasn't been chosen yet, move them over
 	if (!draftOrder.includes(choice)) {
 		draftOrder.push(choice);
-		// console.log('draftOrder', draftOrder);
 	}
 	//Remove the value
 	draftChances.splice(0,1);
-	// console.log('draftChances',draftChances);
 }
 
-
+//Runs until draftOrder array is full with everyone
 const recursiveLotteryRunner = (draftChances) => {
 	if(draftOrder.length == 12) {
-		console.log('This year\'s draft order is:\n', draftOrder);
+		console.log(`I had to run ${count} times to complete`);
+		console.log(`This year\'s draft order is:\n ${draftOrder}`);
 		return;
  	}		
-	
+	count ++;
 	lotterySelector(shuffle(draftChances));
  	recursiveLotteryRunner(draftChances);
 }

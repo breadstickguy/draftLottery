@@ -1,4 +1,5 @@
-const draftChances = [];
+const draftChances = [], draftOrder = [];
+let count = 0;
 
 const players = [
 	{name:"Jerry", value: 12}, 
@@ -14,31 +15,32 @@ const players = [
 	{name: "Seth", value: 2}, 
 	{name: "Nate", value: 1}, 
 ];
-//Builds our array of draftChances based on values passed in
-const arrayBuilder = (value, len) => {
-  for (let i = 0; i < len; i++) {
+/**
+ * Builds our array of draftChances
+ * @param {string} value - The name of the player in the lottery
+ * @param {integer} times - The number of times to enter the player into the lottery
+ *
+ * @return {array} draftChances - Our completed lottery array
+ */
+const arrayBuilder = (value, times) => {
+  for (let i = 0; i < times; i++) {
     draftChances.push(value);
   }
   return draftChances;
 }
 
-
+// Build our array of draftChances
 players.forEach(function(idx){
 	arrayBuilder(idx.name, idx.value);
 });
 
-
-console.log(draftChances);
-console.log(draftChances.length);
-
-const draftOrder = [];
-let count = 0;
-
-
-
-//Randomizes the array of lottery choices
+/**
+ * Randomizes the array of lottery choices
+ * @param {array} array - The array to shuffle
+ * @return (array) - The shuffled array
+ */
 const shuffle = array => {
-	let i = 0, j = 0, temp = null
+	let i = 0, j = 0, temp = null;
 	for (i = array.length - 1; i > 0; i -= 1) {
 	    j = Math.floor(Math.random() * (i + 1))
    		temp = array[i];
@@ -48,7 +50,12 @@ const shuffle = array => {
 	return array;
 }
 
-//The selector for the lottery
+/**
+  * The selector for the lottery. Takes in an array and removes the first index.
+  * If the index doesn't exist in draftOrder, pushes the index to a seperate array
+  * @param {array} array - array of draftChoices
+  * @return {void}
+  */
 const lotterySelector = array => {
 	//Selects the first value in the shuffled array
 	let choice = array[0];
@@ -60,11 +67,15 @@ const lotterySelector = array => {
 	draftChances.splice(0,1);
 }
 
-//Runs until draftOrder array is full with everyone
-const recursiveLotteryRunner = (draftChances) => {
+/** 
+  * Recursively runs the other funtcions until array is full with 1 instance of each player
+  * @param {array} draftChances - the array built with everyone's lottery chances
+  * @return {void}
+  */
+const recursiveLotteryRunner = draftChances => {
 	if(draftOrder.length == 12) {
 		console.log(`I had to run ${count} times to complete`);
-		console.log(`This year\'s draft order is:\n ${draftOrder}`);
+		console.log(`This year\'s draft order is:\n${draftOrder}`);
 		return;
  	}		
 	count ++;
@@ -72,7 +83,4 @@ const recursiveLotteryRunner = (draftChances) => {
  	recursiveLotteryRunner(draftChances);
 }
 
-// console.log(arrayBuilder("JJ", 9));
-
-
-// recursiveLotteryRunner(draftChances);
+recursiveLotteryRunner(draftChances);

@@ -1,17 +1,36 @@
-const draftChances = [
-	"Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry","Jerry", //12
-	"Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor","Taylor", //11
-	"Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom","Tom", //10
-	"JJ","JJ","JJ","JJ","JJ","JJ","JJ","JJ","JJ", //9
-	"Adam","Adam","Adam","Adam","Adam","Adam","Adam","Adam", //8
-	"Josh","Josh","Josh","Josh","Josh","Josh","Josh", //7
-	"Juan","Juan","Juan","Juan","Juan","Juan", //6
-	"Brian J","Brian J","Brian J","Brian J","Brian J", //5
-	"Brian W","Brian W","Brian W","Brian W",//4
-	"Manny","Manny","Manny",//3
-	"Seth","Seth",//2
-	"Nate"//1
+const draftChances = [];
+
+const players = [
+	{name:"Jerry", value: 12}, 
+	{name:"Taylor", value: 11}, 
+	{name: "Tom", value: 10}, 
+	{name: "JJ", value: 9}, 
+	{name: "Adam", value: 8}, 
+	{name: "Josh", value: 7}, 
+	{name: "Juan", value: 6}, 
+	{name: "Brian J", value: 5}, 
+	{name: "Brian W", value: 4}, 
+	{name: "Manny", value: 3}, 
+	{name: "Seth", value: 2}, 
+	{name: "Nate", value: 1}, 
 ];
+//Builds our array of draftChances based on values passed in
+const arrayBuilder = (value, len) => {
+  for (let i = 0; i < len; i++) {
+    draftChances.push(value);
+  }
+  return draftChances;
+}
+
+
+players.forEach(function(idx){
+	arrayBuilder(idx.name, idx.value);
+});
+
+
+console.log(draftChances);
+console.log(draftChances.length);
+
 const draftOrder = [];
 let count = 0;
 
@@ -53,5 +72,7 @@ const recursiveLotteryRunner = (draftChances) => {
  	recursiveLotteryRunner(draftChances);
 }
 
+// console.log(arrayBuilder("JJ", 9));
 
-recursiveLotteryRunner(draftChances);
+
+// recursiveLotteryRunner(draftChances);

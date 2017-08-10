@@ -22,17 +22,19 @@ const players = [
  *
  * @return {array} draftChances - Our completed lottery array
  */
-const arrayBuilder = (value, times) => {
+const arrayBuilder = (value, times, buildArray) => {
   for (let i = 0; i < times; i++) {
-    draftChances.push(value);
+    buildArray.push(value);
   }
-  return draftChances;
+  return buildArray;
 }
 
 // Build our array of draftChances
 players.forEach(function(idx){
-	arrayBuilder(idx.name, idx.value);
+	arrayBuilder(idx.name, idx.value, draftChances);
 });
+
+const total = draftChances.length;
 
 /**
  * Randomizes the array of lottery choices
@@ -54,33 +56,35 @@ const shuffle = array => {
   * The selector for the lottery. Takes in an array and removes the first index.
   * If the index doesn't exist in draftOrder, pushes the index to a seperate array
   * @param {array} array - array of draftChoices
+  * @param (array) targetArray - array for holding choices
   * @return {void}
   */
-const lotterySelector = array => {
+const lotterySelector = (array, targetArray) => {
 	//Selects the first value in the shuffled array
 	let choice = array[0];
 	//If the person hasn't been chosen yet, move them over
-	if (!draftOrder.includes(choice)) {
-		draftOrder.push(choice);
+	if (!targetArray.includes(choice)) {
+		targetArray.push(choice);
 	}
 	//Remove the value
-	draftChances.splice(0,1);
+	array.splice(0,1);
 }
 
 /** 
   * Recursively runs the other funtcions until array is full with 1 instance of each player
-  * @param {array} draftChances - the array built with everyone's lottery chances
+  * @param {array} array - the array to be shuffled and selected from
+  * @param (array) targetArray - array for holding final draft order
   * @return {void}
   */
-const recursiveLotteryRunner = draftChances => {
+const recursiveLotteryRunner = (array, targetArray) => {
 	if(draftOrder.length == 12) {
-		console.log(`I had to run ${count} times to complete`);
+		console.log(`I had to run ${count} out of ${total} times to complete `);
 		console.log(`This year\'s draft order is:\n${draftOrder}`);
 		return;
  	}		
 	count ++;
-	lotterySelector(shuffle(draftChances));
- 	recursiveLotteryRunner(draftChances);
+	lotterySelector(shuffle(array), targetArray);
+ 	recursiveLotteryRunner(array, targetArray);
 }
 
-recursiveLotteryRunner(draftChances);
+recursiveLotteryRunner(draftChances, draftOrder);

@@ -2,18 +2,18 @@ const draftChances = [], draftOrder = [];
 let count = 0;
 
 const players = [
-	{name:"Jerry", value: 12}, 
-	{name:"Taylor", value: 11}, 
-	{name: "Tom", value: 10}, 
-	{name: "JJ", value: 9}, 
-	{name: "Adam", value: 8}, 
-	{name: "Josh", value: 7}, 
+	{name:"Tom", value: 12}, 
+	{name:"Jerry", value: 11}, 
+	{name: "Manny", value: 10}, 
+	{name: "Eric", value: 9}, 
+	{name: "Brian W", value: 8}, 
+	{name: "Adam", value: 7}, 
 	{name: "Juan", value: 6}, 
-	{name: "Brian J", value: 5}, 
-	{name: "Brian W", value: 4}, 
-	{name: "Manny", value: 3}, 
-	{name: "Seth", value: 2}, 
-	{name: "Nate", value: 1}, 
+	{name: "Josh", value: 5}, 
+	{name: "JJ", value: 4}, 
+	{name: "Seth", value: 3}, 
+	{name: "Nate", value: 2}, 
+	{name: "Brian J", value: 1}, 
 ];
 /**
  * Builds our array of draftChances

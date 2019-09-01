@@ -39,7 +39,7 @@ const total = draftChances.length;
 /**
  * Randomizes the array of lottery choices
  * @param {array} array - The array to shuffle
- * @return (array) - The shuffled array
+ * @return {array} - The shuffled array
  */
 const shuffle = array => {
 	let i = 0, j = 0, temp = null;
@@ -56,7 +56,7 @@ const shuffle = array => {
   * The selector for the lottery. Takes in an array and removes the first index.
   * If the index doesn't exist in draftOrder, pushes the index to a seperate array
   * @param {array} array - array of draftChoices
-  * @param (array) targetArray - array for holding choices
+  * @param {array} targetArray - array for holding choices
   * @return {void}
   */
 const lotterySelector = (array, targetArray) => {
@@ -73,7 +73,7 @@ const lotterySelector = (array, targetArray) => {
 /** 
   * Recursively runs the other funtcions until array is full with 1 instance of each player
   * @param {array} array - the array to be shuffled and selected from
-  * @param (array) targetArray - array for holding final draft order
+  * @param {array} targetArray - array for holding final draft order
   * @return {void}
   */
 const recursiveLotteryRunner = (array, targetArray) => {
